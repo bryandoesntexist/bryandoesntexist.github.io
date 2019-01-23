@@ -1,0 +1,45 @@
+.welcome-message-wrap {}
+
+.welcome-message-contents-wrap {}
+
+.welcome-message-thumb {
+	display: inline-block;
+	margin: 0 -4px 0 0;
+	width: 15%;
+	vertical-align: top;
+	font-size: 0;
+	line-height: 0;
+	position: relative;
+	*zoom: 1;
+	*display: inline;
+}
+
+.welcome-message-thumb-caption {
+	padding: 4px;
+	text-align: center;
+	font-size: 8px;
+	line-height: 1.2em;
+}
+
+.welcome-message-content {
+	width: 100%;
+	display: block;
+}
+
+.welcome-message-content.welcome-message-has-thumb {
+	width: 85%;
+	display: inline-block;
+	vertical-align: top;
+	padding-left: 16px;
+	margin-right: -4px;
+	*zoom: 1;
+	*display: inline;
+}
+
+.welcome-message-content-inner {
+	margin-bottom: 16px;
+}
+
+.welcome-message-content-full {
+	display: none;
+}

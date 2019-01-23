@@ -1,0 +1,544 @@
+/* FONTS */
+.extraSmall {
+	font-size: .6em;
+}
+
+.small {
+	font-size: .8em;
+}
+
+.large {
+	font-size: 1.25em;
+}
+
+.2x {
+	font-size: 2em;
+}
+
+.3x {
+	font-size: 3em;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+
+
+
+
+/****************** SITE BUILDING BLOCKS *****************/
+.banner {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 75px 0px;
+}
+
+.container {
+	width: 100% !important;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.module {
+	box-sizing: border-box;
+	display: inline-block;
+	margin-left: -4px;
+	vertical-align: middle;
+}
+
+.module:first-child {
+	margin-left: 0;
+}
+
+.module:first-of-type {
+	margin-left: 0;
+}
+
+
+
+/****************** LAYOUT *****************/
+
+/* ELEMENT WIDTH */
+.per10 {
+	width: 10%;
+}
+
+.per1-7 {
+	width: 14.285%;
+}
+
+.per20 {
+	width: 20%;
+}
+
+.per25 {
+	width: 25%;
+}
+
+.per30 {
+	width: 30%;
+}
+
+.per40 {
+	width: 40%;
+}
+
+.per50 {
+	width: 50%;
+}
+
+.per60 {
+	width: 60%;
+}
+
+.per70 {
+	width: 70%;
+}
+
+.per75 {
+	width: 75%;
+}
+
+.per80 {
+	width: 80%;
+}
+
+.per90 {
+	width: 90%;
+}
+
+.per100 {
+	width: 100%;
+}
+
+
+/* ALIGNMENT */
+.alignLeft {
+	text-align: left;
+}
+
+.alignCenter {
+	text-align: center;
+}
+
+.alignRight {
+	text-align: right;
+}
+
+.module.alignTop {
+	vertical-align: top;
+}
+
+.module.alignBottom{
+	vertical-align: bottom;
+}
+
+
+/* PADDING */
+
+.paddingExtraSmall {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.paddingSidesExtraSmall {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.paddingSmall {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.paddingSidesSmall {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.paddingLarge {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.paddingSidesLarge {
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.paddingTop {
+	padding-top: 50px;
+}
+
+.paddingRight {
+	padding-right: 50px;
+}
+
+.paddingBottom {
+	padding-bottom: 50px;
+}
+
+.paddingLeft {
+	padding-left: 50px;
+}
+
+.paddingFullExtraSmall {
+	padding: 5px;
+}
+
+.paddingFullMedium {
+	padding: 10px;
+}
+
+
+/* MARGIN */
+.marginTop {
+	margin-top: 25px;
+}
+
+.marginRight {
+	margin-right: 25px;
+}
+
+.marginBottom {
+	margin-bottom: 25px;
+}
+
+.marginLeft,
+.module.marginLeft {
+	margin-left: 25px;
+}
+
+.marginCenter {
+	margin: 0 auto;
+}
+
+.marginBottomSmall {
+	margin-bottom: 10px;
+}
+
+/* COMMON SPECIAL CASES */
+.module.per100 {
+	display: block;
+	margin-left: 0;
+}
+
+.clearFix {
+	clear: both;
+}
+
+img.imageBleed {
+	margin-bottom: -75px;
+	margin-top: -75px;
+}
+
+.borderRight {
+	border-right: 1px solid #ccc; 
+}
+
+.divider {
+	border-bottom: 2px solid #ccc;
+	width: 100%;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+.fullBorder {
+	border: 1px solid #ccc;
+}
+
+
+/***************************************************************************/
+/*************** YOUR OVERRIDES AND CUSTOMIZATIONS BELOW HERE **************/
+/***************************************************************************/
+
+
+/****************** ACCORDIAN VIEW **************/
+/****************** MOBILE ACCORDIAN VIEW **************/
+.module.across1 {
+	width: 100%;
+}
+
+.module.across7 {
+	width: 14.7%;
+}
+
+.eventListing {
+	box-sizing: border-box;
+	font-size: .7em;
+	padding-top:2px;
+	padding-bottom: 2px;
+	font-weight: bold;
+	min-height: 12px;
+}
+
+.accordianOpen {
+	cursor: pointer;
+}
+
+.module.per100.expandedContent {
+	display: none;
+}
+
+.module.per100.accordianContent {
+	display: none;
+	border-top: 1px solid #ccc;
+	color: #333;
+}
+
+.eventTitle {
+	margin: 0;
+	font-size: 14px;
+	line-height: 18px;
+	padding: 8px 45px 8px 0px;
+}
+
+.detail-icon {
+	width: 30px;
+	display: inline-block;
+	text-align: center;
+}
+
+.detail-icon .fa {
+	color: #777;
+}
+
+.detail-text {
+	display: inline-block;
+	padding-left: 8px;
+	box-sizing: border-box;
+	vertical-align: middle;
+	width: 90%;
+}
+
+.detail-text p {
+	font-size: 12px;
+	line-height: 1em;
+	margin-bottom: 0;
+}
+
+.detail-text a {
+	font-size: 12px;
+	margin-top: 5px;
+	line-height: 1em;
+	display: block;
+}
+
+.detail-title {
+	font-size: 10px;
+	line-height: 14px;
+	margin: 0 0 4px 0;
+	text-transform: uppercase;
+	color: #999;
+	display: block;
+}
+
+.accordion-event-detail {
+	background-color: #eaeaea;
+	padding: 8px;
+	border-bottom: 1px dotted #999;
+	position: relative;
+}
+
+.day-date {
+	font-size: 18px;
+	line-height: 1em;
+	text-align: center;
+	display: block;
+}
+
+.month-date {
+	font-size: 10px; 
+	line-height: 1em;
+	text-align: center;
+	text-transform: uppercase;
+	display: block;
+}
+
+.day-date.day-date-range {
+	font-size: 14px;
+}
+
+.accordianDate {
+	border-right: 1px solid #ccc;
+}
+
+
+
+.accordion-event-detail:last-child {
+	border-bottom: none;
+}
+
+.accordian .module.per10 {
+	width: 9%;
+}
+
+
+.module.per100.accordian {
+	display: -webkit-box;  
+    display: -ms-flexbox;  
+    display: -webkit-flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	background-color: #fff;
+}
+
+.ccm-pane-body {
+	background-color: initial;
+}
+	
+
+.accordianDate, .accordianTitle, .accordianButton {
+	flex: 0 1 auto;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: center;
+}
+
+
+/****************** GENERAL *****************/
+label {
+	display: block;
+	font-weight: bold;
+}
+
+input[type='text'] {
+	padding: 7px;
+	display: block;
+	box-sizing: border-box;
+	font-size: 1em;
+}
+
+.banner.noPadding {
+	padding: 0;
+}
+
+.colorSwatch {
+	float: left;
+	width: 22px; 
+	height: 22px; 
+	margin-right: 3px; 
+	margin-bottom: 3px;
+	border-radius: 3px;
+	margin-top: 3px;
+	cursor: pointer;
+	box-sizing: border-box;
+	vertical-align: middle;
+}
+
+
+
+/****************** MOBILE STYLES *****************/
+@media (min-width: 1400px) {
+	
+}
+
+@media (max-width: 1024px) {
+	
+}
+	
+	
+@media (max-width: 768px) {
+	h1, h2 {
+		font-size: 2.25em;
+	}
+	
+	.banner {
+		padding: 50px 0px;
+	}
+	
+	.container {
+		width: 95%;
+	}
+	
+/*	.module {
+		display: block;
+		margin-left: 0;
+		margin-bottom: 25px;
+		margin: 0 auto;
+	}*/
+	
+
+	
+	.accordian .module {
+		display: inline-block;
+		margin-left: -4px;
+		margin-bottom: 0px;
+	}
+	
+	.module.accordianDate {
+		width: 40%;
+		margin-left: 0;
+	}
+	
+	.accordianTitle {
+		width: 50%;
+	}
+	
+	
+	.module.per100 {
+		display: block;
+		margin-left: initial;
+	}
+	
+	.mobileView .accordian {
+		margin-bottom: 5px;
+	}
+	
+	.calendarView .per10,
+	.calendarView .per1-7,
+	.calendarView .per20,
+	.calendarView .per25,
+	.calendarView .per30,
+	.calendarView .per40,
+	.calendarView .per50,
+	.calendarView .per60,
+	.calendarView .per70,
+	.calendarView .per75,
+	.calendarView .per80,
+	.calendarView .per90,
+	.calendarView .per100 {
+		width: 100%;
+	}
+	
+	img.imageBleed {
+		margin-bottom: -50px;
+		margin-top: -50px;
+	}
+	
+	
+	/* OPTIONAL, TO ENSURE EVERY ELEMENT IS CENTERED */
+/*	.alignLeft,
+	.alignRight {
+		text-align: center;
+	}*/
+	
+	.heading .alignRight {
+		text-align: right;
+	}
+	
+	.paddingLeft {
+		padding-left: 0;
+	}
+	
+	.paddingRight {
+		padding-right: 0;
+	}
+	
+	.module.leftMargin {
+		margin-left: 0;
+	}
+	
+	.rightMargin {
+		margin-right: 0;
+	}	
+}
+
+@media (max-width:480px) {
+	img {
+		max-width: 100%;
+	}
+}
+

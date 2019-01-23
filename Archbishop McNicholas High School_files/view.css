@@ -1,0 +1,140 @@
+.fsa-item {
+	display: inline-block;
+	width: 45.85152838%; /* 210/458 */
+	vertical-align: top;
+	margin-left: 6.98689956%; /* 32/458 */
+	margin-right: -4px;
+	margin-bottom: 32px;
+	*zoom: 1;
+	*display: inline;	
+}
+
+.fsa-item:first-child,
+.fsa-item:nth-child(3) {
+	margin-left: 0;
+}
+
+.fsa-item:nth-child(3),
+.fsa-item:nth-child(4) {
+	margin-bottom: 0;	
+}
+
+
+@media screen and (max-width: 960px) {
+	
+	.fsa-item {
+		width: 22.36553238%; /* 203.75/911 */
+		margin-left: 3.51262349%; /* 32/911 */
+	}
+	
+	.fsa-item:first-child {
+		margin-left: 0;
+	}
+	
+	.fsa-item:nth-child(3) {
+		margin-left: 3.51262349%; /* 32/911 */
+	}
+	
+	.fsa-item:nth-child(1),
+	.fsa-item:nth-child(2) {
+		margin-bottom: 0;
+	}
+	
+}
+
+@media screen and (max-width: 650px) {
+	
+	.fsa-item {
+		width: 47.472353870%; /* 300.5/633 */
+		margin-left: 5.05529225%; /* 32/633 */
+	}
+	
+	.fsa-item:first-child,
+	.fsa-item:nth-child(3) {
+		margin-left: 0;
+	}
+	
+	.fsa-item:nth-child(1),
+	.fsa-item:nth-child(2) {
+		margin-bottom: 32px;
+	}
+
+	.fsa-item:nth-child(3),
+	.fsa-item:nth-child(4) {
+		margin-bottom: 0;	
+	}
+	
+}
+
+@media screen and (max-width: 599px) {
+	
+	.fsa-item:nth-child(1),
+	.fsa-item:nth-child(2) {
+		margin-bottom: 16px;
+	}
+	
+}
+
+.fsa-inner {
+	position: relative;
+	width: 100%;
+	height: 220px;
+	overflow: hidden;
+}
+
+.fsa-image {
+	position: absolute;
+	top: -10%;
+	left: -10%;
+	width: 120%;
+	height: 120%;
+	background-size: cover;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	transition: all .25s linear;
+	-moz-transition: all .25s linear;
+	-webkit-transition: all .25s linear;
+	-o-transition: all .25s linear;
+	transform: translate3d(0,0,0);
+	-webkit-transform: translate3d(0,0,0);
+	-moz-transform: translate3d(0,0,0);
+	-o-transform: translate3d(0,0,0);
+}
+
+.fsa-item:hover .fsa-image {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+
+.fsa-caption {
+	position: absolute;
+	bottom: 0;	
+	left: 0;
+	width: 100%;
+	background-color: #000;
+	background-color: rgba(0,0,0,0.85);
+	color: #FFF;
+	font-size: 12px;
+	line-height: 1em;
+	text-align: center;
+	padding: 8px;
+}
+
+@media screen and (max-width: 960px) {
+	.fsa-caption {
+		font-size: 10px;
+	}
+}
+
+@media screen and (max-width: 599px) {
+	.fsa-caption {
+		font-size: 8px;
+		padding: 4px;
+	}
+}

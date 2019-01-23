@@ -1,0 +1,488 @@
+// Avoid `console` errors in browsers that lack a console.
+if (!(window.console && console.log)) {
+(function() {
+var noop = function() {};
+var methods = ['assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error', 'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log', 'markTimeline', 'profile', 'profileEnd', 'markTimeline', 'table', 'time', 'timeEnd', 'timeStamp', 'trace', 'warn'];
+var length = methods.length;
+var console = window.console = {};
+while (length--) {
+console[methods[length]] = noop;
+}
+}());
+}
+
+/*!	
+* auxLinksMover v1.0
+*
+* Moves aux links to mobile toggle menu on small screens.
+*
+* Copyright 2015, Rory Hurlburt @ Wild Apple Design Group
+* Released under the WTFPL license 
+* http://www.wildappledesigngroup.com
+*
+* Date: 12/8/15
+*/
+(function($){
+     $.fn.extend({ 
+
+         auxLinksMover: function(options) {
+            var defaults = {
+							breakpoint: 960,
+							slidePanelID: '#mobile-menu'
+            };
+            
+            var options = $.extend(defaults, options);
+        
+            return this.each(function() {
+						
+							// Variables
+							var o = options;
+							var auxItem = $(this);
+							var auxLink = $(this).find('a');
+							var breakPoint = o.breakpoint-15; // add 15 for scrollbar width.
+							var targetToMoveTo = $(o.slidePanelID).find('.toggle-menu');
+							
+							$(window).on('resize', function () {
+								
+								if ($(window).width() < breakPoint) {
+									 
+									 if (!$('.aux-placeholder').length){
+										$('<span class="aux-placeholder" />').insertBefore(auxItem);
+									 }
+									 
+									 if (!$('.aux-mobile-placeholder').length){
+										$(targetToMoveTo).prepend('<span class="aux-mobile-placeholder" />');
+									 }
+									 
+									 $(auxItem).insertBefore('.aux-mobile-placeholder');
+								
+								} else {
+										 
+									$(auxItem).insertAfter('.aux-placeholder');
+									
+								}
+								
+							}).resize();
+							
+            });
+        }
+    });
+})(jQuery);
+
+$('.aux-item').auxLinksMover();
+
+// Back To Top
+$(document).ready(function(){
+
+	// Create a div where the back to top button will live
+	$('body').append('<div class="ttt-overlay"><a href="#header-area" class="ttt-button"><i class="fa fa-chevron-up"></i></a></div>');
+	
+	var	$ttt = $('a.ttt-button');
+				$document = $(document),
+				$element = $('.ttt-overlay'),
+				className = 'ttt-active';
+	
+	$document.scroll(function() {
+		if ($document.scrollTop() >= 250) {
+			// user scrolled 250 pixels or more;
+			// do stuff
+			$element.addClass(className);
+		} else {
+			$element.removeClass(className);
+		}
+	});
+				
+	$($ttt).smoothScroll({
+		scrollTarget: $('body'),
+	}); 
+
+
+});
+
+// SLIDEOUT PANEL
+// v.1.1
+// 5-1-2015
+$(document).ready(function() {
+	
+	$('.inner-wrap').append('<div class="slide-panel-overlay" />');
+	var	spOver = $('.slide-panel-overlay');
+				oWrap = $('.outer-wrap');
+				iWrap = $('.inner-wrap');
+
+	var panelTrigger = $('.slide-panel-trigger');
+	
+	$(panelTrigger).click(function(evt){
+		evt.preventDefault();
+		
+		var	spName = $(this).data('panel-name');					
+					spPanel = $(".slide-panel[data-panel-name='" + spName + "']");
+					spPanelInner = $(spPanel).find('.slide-panel-inner-wrap');
+					spTrig = $(this);
+					spCloseTrig = $(spPanel).find('.slide-panel-close-trigger');							
+				
+		$(spTrig).toggleClass('panel-triggered');		
+		
+		if ($(spTrig).hasClass('panel-triggered')) {
+			$(this).slidePanelOn();
+		} else {
+			$(this).slidePanelOff();
+		};
+				
+		$(spCloseTrig).click(function(evt){
+			evt.preventDefault();
+			$(this).slidePanelOff();
+		});
+		
+		$(spOver).click(function(evt){
+			evt.preventDefault();
+			$(this).slidePanelOff();
+		});
+				
+		
+		
+
+		
+		return false;
+	
+	});
+		
+	// Custom function for turning panel on
+	$.fn.slidePanelOn = function() {
+	
+		// Use hardware acceleration if transforms are supported. 
+		// Just apply css to the divs being moved.
+		// Will make the GPU fire up providing a smoother animation
+		if(Modernizr.csstransforms) {
+						
+			$.fn.transformRollOut = function() {
+					$(this).css({
+						'transform':'translate3d(0,0,0)',
+						'-moz-transform':'translate3d(0,0,0)',
+						'-webkit-transform':'translate3d(0,0,0)',
+						'-o-transform':'translate3d(0,0,0)',
+						'-ms-transform':'translate3d(0,0,0)',
+					}); 
+			};
+		
+		$(spPanel).transformRollOut();
+		$(iWrap).transformRollOut();
+		$(oWrap).transformRollOut();
+		
+		};
+		
+	
+		// Icon switcheroo for menu button / panel usage
+		if ($(spTrig).hasClass('panel-triggered')) {
+				if ($(spTrig).find('i.fa').hasClass('fa-bars')) {
+				$(spCloseTrig).remove();
+				$(spTrig).find('i.fa').removeClass('fa-bars').addClass('fa-times');
+				};
+		};
+		
+		// adjust scrollbar to left if left panel
+		if (!$(spPanelInner).find('.slide-panel-scroll-swap').length) {
+			$(spPanelInner).wrapInner('<div class="slide-panel-scroll-swap" />');
+		};
+
+		// FOR CSS3 TRANSITIONS SUPPORT
+		if(Modernizr.csstransitions) {
+		
+				$(oWrap).addClass('outer-wrap-active');
+
+				// Get inner-wrap ready to move
+				// Reset it to 0 first, and then add class to move it
+				if($(spPanel).hasClass('slide-panel-right')){
+				
+					$(iWrap).css({
+						'left':'0',
+					}).addClass('inner-wrap-active');
+				
+				} else if($(spPanel).hasClass('slide-panel-left')){
+					
+					$(iWrap).css({
+						'right':'0',
+					}).addClass('inner-wrap-active');
+				
+				};	
+				
+				$(spOver).addClass('slide-panel-overlay-active');
+				$(spPanel).addClass('slide-panel-active');
+				// In case other panels are open
+				$('.slide-panel').not(spPanel).removeClass('slide-panel-active');
+				$('.slide-panel-trigger').not(spTrig).removeClass('panel-triggered');		
+				
+				// Determine Left or Right and adjust inner-wrap accordingly depending on win width
+				// 40% for large screens, 70% for small screens
+					var windowWidth = $(document).width();	
+					
+					if($(spPanel).hasClass('slide-panel-right')){
+					
+						if (windowWidth < 769) {
+							$(iWrap).css({
+								'left':'-70%',
+								'right':'',
+							});
+						} else {
+							$(iWrap).css({
+								'left':'-40%',
+								'right':'',
+							});
+						};
+					
+					} else if($(spPanel).hasClass('slide-panel-left')){
+					
+						if (windowWidth < 769) {
+							$(iWrap).css({
+								'right':'-70%',
+								'left':'',
+							});
+						} else {
+							$(iWrap).css({
+								'right':'-40%',
+								'left':'',
+							});
+						};
+
+					};
+		
+		// JQUERY WHEN CSS3 ISN'T WELL SUPPORTED
+		} else {
+		
+			$(oWrap).addClass('outer-wrap-active');
+			
+			if($(spPanel).hasClass('slide-panel-right')){
+			
+			$(iWrap).css({
+				'position':'fixed',
+				'top':'0',
+				'left':'0'
+			}).animate({
+				'left':'-40%'
+			},250);
+			$(spOver).css({
+				'visibility':'visible',
+				'zoom':'1',
+				'filter':'alpha(opacity=75)',
+				'opacity':'0.75'
+			});
+			$(spPanel).css({
+				'visibility':'visible',
+				'width':'40%'
+			}).animate({
+				'right':'0'
+			}, 250);
+			$('.slide-panel.slide-panel-right').not(spPanel).css({
+					'visibility':''
+				}).animate({
+					'right':'-40%'
+				}, 250);
+			$('.slide-panel.slide-panel-left').not(spPanel).css({
+					'visibility':''
+				}).animate({
+					'left':'-40%'
+				}, 250);
+				
+			} else if($(spPanel).hasClass('slide-panel-left')){
+				
+				$(iWrap).css({
+					'position':'fixed',
+					'top':'0',
+					'right':'0'
+				}).animate({
+					'right':'-40%'
+				},250);
+				$(spOver).css({
+					'visibility':'visible',
+					'zoom':'1',
+					'filter':'alpha(opacity=75)',
+					'opacity':'0.75'
+				});
+				$(spPanel).css({
+					'visibility':'visible',
+					'width':'40%'
+				}).animate({
+					'left':'0'
+				}, 250);
+				$('.slide-panel.slide-panel-right').not(spPanel).css({
+					'visibility':''
+				}).animate({
+					'right':'-40%'
+				}, 250);
+			$('.slide-panel.slide-panel-left').not(spPanel).css({
+					'visibility':''
+				}).animate({
+					'left':'-40%'
+				}, 250);
+			
+			};
+			
+		};
+		
+		// Fix a jittery animation bug in android by setting max-width on panel
+		var spPanelWidth = $(spPanel).width();
+		$(spPanel).css({
+			'maxWidth':spPanelWidth
+		});
+		
+		//var reportWidth = $(spPanel).width();
+		//alert(reportWidth);	
+		
+		// Is there overflow? If so, show a scrollbar
+		if($(oWrap).hasClass('outer-wrap-active')) {		
+
+			$(window).on('resize', function () {
+			
+			var outerHeight = $(window).height();
+			var panelHeight = $(spPanelInner).height();	
+									
+				if ($(panelHeight > outerHeight)) {
+					
+					$(spPanelInner).css({
+						'height':outerHeight,
+						'overflow-y':'scroll'
+					});
+				
+				};
+				
+			}).resize();	
+			
+			};
+	
+
+	return false;
+	};
+	
+	
+	// Custom function for shutting panel off
+	$.fn.slidePanelOff = function() {
+		
+		// Icon switcheroo for menu button / panel usage
+		if ($(spTrig).find('i.fa').hasClass('fa-times')) {
+			$(spTrig).find('i.fa').addClass('fa-bars').removeClass('fa-times');
+		};
+		
+		// icon switcheroo for mobile menu triggers
+		if ($(panelTrigger).find('i.fa').hasClass('fa-times')) {
+			$(panelTrigger).not(spTrig).find('i.fa').addClass('fa-bars').removeClass('fa-times');
+		};
+				
+		$(spTrig).removeClass('panel-triggered');		
+
+		// FOR CSS3 TRANSITIONS SUPPORT
+		if(Modernizr.csstransitions) {
+								
+				$.queueEm = function( callback, seconds){
+					 return window.setTimeout( callback, seconds * 300 );
+					};
+				
+				
+				$(spPanel).removeClass('slide-panel-active');
+ 	
+				$.queueEm(function() { 
+					$(iWrap).removeClass('inner-wrap-active');
+				}, 1);				
+				$.queueEm(function() { 
+					$(oWrap).removeClass('outer-wrap-active');
+				}, 1);
+				$.queueEm(function() { 
+					$(spOver).removeClass('slide-panel-overlay-active');
+				}, 1);							
+					
+				// Determine Left or Right and adjust inner-wrap accordingly depending on win width
+				// Animating the inner wrap back to origin
+					
+					if($(spPanel).hasClass('slide-panel-right')){
+	
+							$(iWrap).css({
+								'left':'0',
+								'right':''
+							});
+					
+					} else if($(spPanel).hasClass('slide-panel-left')){
+					
+							$(iWrap).css({
+								'right':'0',
+								'left':''
+							});
+							
+					};
+
+					
+		// JQUERY WHEN CSS3 ISN'T WELL SUPPORTED
+		} else {
+		
+				$(oWrap).removeClass('outer-wrap-active');
+				
+				if($(spPanel).hasClass('slide-panel-right')){
+				
+					$(iWrap).css({
+						'position':'',
+						'top':''
+					}).animate({
+						'left':'0'
+					},250);
+					$(spOver).css({
+						'visibility':'hidden',
+						'zoom':'1',
+						'filter':'alpha(opacity=0)',
+						'opacity':'0'
+					});
+					$(spPanel).css({
+						'visibility':'',
+						'width':''
+					}).animate({
+						'right':'-40%'
+					}, 250);
+				
+				} else if($(spPanel).hasClass('slide-panel-left')){
+				
+					$(iWrap).css({
+						'position':'',
+						'top':''
+					}).animate({
+						'right':'0'
+					},250);
+					$(spOver).css({
+						'visibility':'hidden',
+						'zoom':'1',
+						'filter':'alpha(opacity=0)',
+						'opacity':'0'
+					});
+					$(spPanel).css({
+						'visibility':'',
+						'width':''
+					}).animate({
+						'left':'-40%'
+					}, 250);
+
+				};
+			
+		};
+	
+	// Reset the inner wrap of the slide panel
+	$.queueEm(function() { 
+		
+		if ($(spPanelInner).find('.slide-panel-scroll-swap').length) {
+			
+			$('.slide-panel-scroll-swap').contents().unwrap();
+			
+			$(spPanelInner).css({
+					'height':'',
+					'overflow-y':''
+				});
+			
+			$(iWrap).css({
+				'left':'',
+				'right':''
+			})
+		};
+	}, 1);
+	
+		//var reportWidth = $(spPanel).width();
+		//alert(reportWidth);	
+		
+	return false;
+	
+	};
+	
+});

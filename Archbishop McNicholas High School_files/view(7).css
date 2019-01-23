@@ -1,0 +1,131 @@
+.rcf-l-wrap.rcf-l-cozy {
+	background-color: #FFF;
+	border: 1px solid #ccc;
+	position: relative;
+	margin: 0 0 8px 0;
+	color: #333;
+}
+
+.rcf-l-cozy .rcf-l-date {
+	display: inline-block;
+	vertical-align: middle;
+	width: 20%;
+	margin: 0 -4px 0 0;
+	text-align: center;
+	border-right: 1px solid #ccc;
+	padding: 15px;
+	/* IE Inline Block */
+	zoom:1; 
+	*display: inline; 
+}
+
+.rcf-l-cozy .rcf-l-month {
+	font-size: 10px;
+	line-height: 1em;
+	text-transform: uppercase;
+}
+
+.rcf-l-cozy .rcf-l-day {
+	font-size: 18px;
+	line-height: 1em;
+}
+
+.rcf-l-cozy .rcf-l-title {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 14px;
+	line-height: 18px;
+	width: 80%;
+	margin: 0 -4px 0 0;
+	padding: 8px 45px 8px 8px;
+	position: relative;
+	/* IE Inline Block */
+	zoom:1; 
+	*display: inline; 
+}
+
+.rcf-l-cozy a.rcf-l-expand-trigger {
+	position: absolute;
+	top: 50%;
+	right: 0px;
+	width: 45px;
+	height: 22px;
+	margin-top: -11px;
+	line-height: 22px;
+	font-size: 22px;
+	text-align: center;
+	display: block;
+}
+
+a.rcf-l-expand-trigger:hover {
+	
+}
+
+.rcf-l-contents {
+	background-color: #eaeaea;
+	display: none;
+}
+
+.rcf-l-cozy .rcf-l-details {
+	border-bottom: 1px dotted #999;
+	padding: 8px 8px 8px 45px;
+	position: relative;
+	font-size: 12px;
+	line-height: 1em;
+}
+
+.rcf-l-details:last-child {
+	border: none;
+}
+
+.rcf-l-cozy .rcf-l-det-col-01 {
+	position: absolute;
+	top: 50%;
+	left: 0px;
+	height: 22px;
+	margin-top: -11px;
+	width: 45px;
+	text-align: center;
+	color: #999;
+	font-size: 14px;
+	line-height: 22px;
+}
+
+.rcf-l-det-label {
+	font-size: 10px;
+	line-height: 14px;
+	margin: 0 0 4px 0;
+	display: block;
+	text-transform: uppercase;
+	color: #999;
+}
+
+.rcf-l-wrap-paginated {
+	display: none;
+	visibility: hidden;
+}
+
+@media screen and (max-width: 1169px) {
+	
+	.rcf-l-date {
+		width: 30%;
+	}
+	
+	.rcf-l-title {
+		width: 70%; 
+	}
+	
+}
+
+
+@media screen and (max-width: 960px) {
+
+	.rcf-l-date {
+		width: 40%;
+	}
+	
+	.rcf-l-title {
+		width: 60%; 
+	}
+	
+}

@@ -1,0 +1,127 @@
+/*!	
+* mentionify v1.0
+*
+* Copyright 2015, Rory Hurlburt @ Wild Apple Design Group
+* Released under the WTFPL license 
+* http://www.wildappledesigngroup.com
+*
+* Date: 11/16/15
+*/
+(function($){
+     $.fn.extend({ 
+
+         mentionify: function(options) {
+            var defaults = {
+							howMany: 6,
+							moreButtonText: 'Load More',
+							moreButtonIcon: 'fa-plus',
+            };
+            
+            var options = $.extend(defaults, options);
+						var mentionItem = $(this).find('.mention-item');
+						var howManyMentions = $(mentionItem).length;
+						
+						function indexFlagMentions(){
+								
+							// Add Class to excess mentions.
+							if (howManyMentions > options.howMany){
+								$(mentionItem).slice(options.howMany).addClass('mention-hidden');
+								
+								// if load more button doesn't exist, create it.
+								if (!$('.mention-load-more').length){
+									$(mentionItem).parent().append('<a href="#a" class="mention-load-more button button-small"><i class="fa '+options.moreButtonIcon+'"></i> '+options.moreButtonText+'</a>');
+								}
+							}
+								
+						}
+						indexFlagMentions();
+						
+						
+            return this.each(function() {
+						
+							// Variables
+							var o = options;
+							var mentionsContainer = $(this);
+							var mentionItem = $(this).find('.mention-item');							
+							var mentionLoadMoreTrig = $('.mention-load-more');
+							var mentionCollapseElement = '<a href="#a" class="mention-collapse-trigger"><i class="fa fa-angle-up"></i></a>';
+							var mentionExpandTrig = $(mentionItem).find('.mention-status-expand-trigger');
+							
+							// function for squaring up the thumbnail responsively.
+							function mentionSquareUpThumb(){
+								
+								$(window).on('resize', function () {
+									$(mentionItem).each(function(){
+										var mentionThumb = $(this).find('.mention-thumb');
+										var mentionThumbWidth = $(mentionThumb).width();
+										$(mentionThumb).css({
+											'height':mentionThumbWidth+'px'
+										});
+									});
+								}).resize();
+								
+							};
+							
+							mentionSquareUpThumb();
+							
+							// basic plugin function for expanding truncated mentions.
+							$.fn.mentionSlideToggle = function() {
+
+									$(this).click(function(evt){
+											
+											evt.preventDefault();
+										
+											var mentionExpandTrig = $(this);
+											var mentionTrunc = $(this).parent().find('.mention-trunc');
+											var mentionFull = $(this).parent().find('.mention-status-expanded');
+											
+											$(mentionExpandTrig).hide();
+											$(mentionTrunc).hide();
+											$(mentionFull).append(mentionCollapseElement);
+											$(mentionFull).show();
+											
+											var mentionCollapseTrigger = $(this).parent().find('.mention-collapse-trigger');
+											
+											$(mentionCollapseTrigger).click(function(evt){
+												
+												evt.preventDefault();
+												
+												$(mentionExpandTrig).show();
+												$(mentionTrunc).show();
+												$(mentionFull).hide();
+												$(this).remove();
+												
+											});
+											
+									});
+								
+							};
+							
+							$(mentionExpandTrig).mentionSlideToggle();
+							
+							
+							// basic plugin for loading more or less mentions
+							
+							$.fn.overflowedMentionsToggle = function() {
+								
+								var hiddenMentions = $(mentionsContainer).find('.mention-hidden');
+								
+								$(this).click(function(evt){
+									
+									evt.preventDefault();
+									$(hiddenMentions).fadeIn().removeClass('mention-hidden');
+									$(this).hide();
+									mentionSquareUpThumb();
+									
+								});
+																
+
+							};
+							
+							$(mentionLoadMoreTrig).overflowedMentionsToggle();
+
+
+            });
+        }
+    });
+})(jQuery);

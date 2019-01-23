@@ -1,0 +1,287 @@
+.tf-wrap {
+	background-color: #FFF;
+	color: #333;	
+	word-wrap: break-word;
+}
+
+.tf-picture {
+  width:30%;
+  display:inline-block;
+  vertical-align:top;
+	padding-right: 0 !important;
+  margin:0 -4px 0 0;
+  zoom:1;
+  *display:inline;
+}
+
+.tf-text {
+  display:inline-block;
+  width:70%;
+  margin:0 -4px 0 0;
+  font-size:14px;
+  line-height:18px;
+  word-wrap:break-word;
+  zoom:1;
+  *display:inline;
+}
+
+.tf-no-pic {
+  display:block;
+  width:100%;
+  margin:0;
+}
+
+.tf-footing {
+  border-top:1px solid #ededed;
+  font-size:12px;
+  line-height:16px;
+  color:#646464;
+}
+
+.tf-date {
+  display:inline-block;
+  width:50%;
+  vertical-align:middle;
+	font-size: 10px;
+	line-height: 1em;
+  margin:0 -4px 0 0;
+  zoom:1;
+  *display:inline;
+}
+
+a.tf-link {
+  display:inline-block;
+  vertical-align:middle;
+  text-align:right;
+	font-size: 10px;
+	line-height: 1em;
+  width:50%;
+  margin:0 -4px 0 0;
+  zoom:1;
+  *display:inline;
+}
+
+/* Cozy Template */
+.tf-wrap-cozy {
+	margin-bottom: 8px;
+}
+
+/* Tight Template */
+.tf-wrap-tight {
+	margin-bottom: 4px; 
+	padding-bottom: 4px;
+	border-bottom: 1px solid #ccc;
+	padding-right: 42px !important;
+	position: relative;
+	min-height: 52px;
+	background-color: #FFF;
+}
+
+a.tf-link-tight {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	width: 42px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 42px;
+	height: 42px;
+	margin-top: -21px;
+}
+
+.tf-picture-tight {
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	width: 42px;
+	height: 42px;
+	background-image: no-repeat;
+	background-size: cover;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	display: block;
+	font-size: 0;
+	line-height: 0;
+}
+
+.tf-text-tight {
+	font-size: 10px;
+	line-height: 14px;
+	margin-left: 46px;
+}
+
+.tf-text-tight.tf-no-pic {
+	margin-left: 0;
+}
+
+/* Media Queries - Match Theme UI-Kit Grid Breakpoints, Change With Care! */
+@media screen and (max-width: 960px) {
+
+	.tf-wrap {
+		width: 47.87234042%; /* 360/752 */
+		display: inline-block !important;
+		vertical-align: top;
+		margin-left: 4.255319148%; /* 32/752 */
+		margin-right: -4px;
+	}
+	
+	.tf-wrap:first-child,
+	.tf-wrap:nth-child(odd)	{
+		margin-left: 0;
+	}	
+	
+	.tf-wrap:last-child {
+		margin-bottom: 32px;
+	}
+	
+}
+
+@media screen and (max-width: 599px) {
+	
+	.tf-wrap {
+		width: 100%; 
+		display: block !important;
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+}
+
+
+
+/* Minimalist Templates */
+.tf-minimalist-item { 
+	margin-bottom: 16px;
+	padding: 0 0 0 32px;
+	position: relative;
+	word-wrap: break-word;
+	color: #333;
+}
+
+.tf-minimalist-item.tf-minimalist-cozy {
+	margin-bottom: 8px;
+}
+
+.tf-minimalist-item.tf-minimalist-tight {
+	margin-bottom: 4px;
+}
+
+.tf-minimalist-item.tf-minimalist-inverse {
+	color: #FFF;
+}
+
+a.tf-minimalist-link:link,
+a.tf-minimalist-link:visited {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 32px;
+	font-size: 14px;
+	line-height: 18px;
+	color: #ccc;
+	text-align: center;
+	display: block;
+}
+
+.tf-minimalist-inverse a.tf-minimalist-link:link,
+.tf-minimalist-inverse a.tf-minimalist-link:visited {
+	color: #FFF;
+}
+
+a.tf-minimalist-link:hover,
+a.tf-minimalist-link:active {
+	color: #333;
+}
+
+.tf-minimalist-inverse a.tf-minimalist-link:hover,
+.tf-minimalist-inverse a.tf-minimalist-link:active {
+	color: #ededed;
+}
+
+.tf-minimalist-picture {
+	width: 24%;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: -4px;
+	*zoom: 1;
+	*display: inline;
+}
+
+.tf-minimalist-cozy .tf-minimalist-picture {
+	width: 12%;
+	vertical-align: top;
+}
+
+.tf-minimalist-tight .tf-minimalist-picture {
+	width: 8%;
+	vertical-align: top;
+}
+
+.tf-minimalist-text {
+	width: 76%;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: -4px;
+	font-size: 14px;
+	line-height: 18px;
+	padding-left: 16px;
+	*zoom: 1;
+	*display: inline;
+}
+
+.tf-minimalist-cozy .tf-minimalist-text {
+	width: 88%;
+	vertical-align: top;
+	font-size: 12px;
+	line-height: 16px;
+	padding-left: 8px;
+}
+
+.tf-minimalist-tight .tf-minimalist-text {
+	width: 92%;
+	vertical-align: top;
+	font-size: 10px;
+	line-height: 14px;
+	padding-left: 4px;
+}
+
+.tf-minimalist-text.tf-no-pic {
+	width: 100%;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+/* Media Queries - Match Theme UI-Kit Grid Breakpoints, Change With Care! */
+@media screen and (max-width: 960px) {
+
+	.tf-minimalist-item {
+		width: 47.87234042%; /* 360/752 */
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 4.255319148%; /* 32/752 */
+		margin-right: -4px;
+	}
+	
+	.tf-minimalist-item:first-child,
+	.tf-minimalist-item:nth-child(odd)	{
+		margin-left: 0;
+	}	
+	
+	.tf-minimalist-item:last-child {
+		margin-bottom: 32px;
+	}
+	
+}
+
+@media screen and (max-width: 599px) {
+	
+	.tf-minimalist-item {
+		width: 100%; 
+		display: block;
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+}

@@ -1,0 +1,272 @@
+/*!	
+* Mega Menu v1.1.1
+*
+* Copyright 2015, Rory Hurlburt @ Wild Apple Design Group
+* Released under the WTFPL license 
+* http://www.wildappledesigngroup.com
+*
+* Date: 11/16/15
+*/
+(function($){
+     $.fn.extend({ 
+
+         megaMenu: function(options) {
+            var defaults = {
+							format: 'collapse',
+							speed: 250,
+							topLevelCaret: true,
+							topLevelCaretIconInactive: 'fa-angle-down',
+							topLevelCaretIconActive: 'fa-caret-down',
+							caretIconInactive: 'fa-angle-down',
+							caretIconActive: 'fa-caret-down',
+							sliceColumnsAt: 8,
+							sliceRowsAt: 4, // 1 - 12
+							ignoreMegaClass: 'mega-menu-ignore',
+            };
+            
+            var options = $.extend(defaults, options);
+        
+            return this.each(function() {
+						
+							// Variables
+							var o = options;
+							var megaMenuWrap = $(this);
+							var megaLevel = $(this).find('.mega-menu-level-1');
+							var topLevelLIdropdown = $(this).find('.mega-menu-level-top').children('li.nav-dropdown');
+							var megaMenuFirstLevelThumb = $(megaLevel).children('.mega-menu-thumb').children('.mega-menu-thumb-inner');
+							
+							$(megaMenuWrap).css({
+								'position':'relative'
+							})
+							
+							// add a class that will help transform the items into mega dropdowns
+							$(megaLevel).each(function(){
+								
+								// if not set to ignore
+								if (!$(this).hasClass(o.ignoreMegaClass)){
+								
+									$(this).addClass('megafy-level-1');
+									
+									
+									// Slice the LIs into columns
+									// If there are more than the amount to slice that is.									
+									var levelOneLI = $(this).children('li');
+									var levelOneLICount = $(levelOneLI).length;
+									
+																			
+										for(var i = 0; i < levelOneLI.length; i+=o.sliceColumnsAt) {
+											levelOneLI.slice(i, i+o.sliceColumnsAt).wrapAll('<div class="mega-menu-items-col"></div>');
+										}
+										
+										
+										// count the amount of columns including thumb and desc if it's there to assign widths...
+										var megaThumbCol = $(this).children('.mega-menu-thumb');
+										var megaDescCol = $(this).children('.mega-menu-desc');
+										$(megaThumbCol).add(megaDescCol).addClass('mega-menu-items-col');
+										
+										var megaColumns = $(this).children('.mega-menu-items-col');
+										var megaCountCols = $(megaColumns).length;
+										
+										
+										// slice the columns into rows
+										for(var i = 0; i < megaCountCols; i+=o.sliceRowsAt) {
+											
+											megaColumns.slice(i, i+o.sliceRowsAt).wrapAll('<div class="mega-menu-items-row row"></div>');
+											
+										}
+										
+										
+										// count what's in each row and assign proper span class for width.
+										var megaRows = $(this).children('.mega-menu-items-row');
+										
+										$(megaRows).each(function(){
+											
+											var megaRowContents = $(this).children('.mega-menu-items-col');
+											var megaRowContentsCount = $(megaRowContents).length;
+											
+											// divide by 12 possible column span class widths
+											var megaRowContentsSpanAmount = 12/megaRowContentsCount;
+											
+											
+											if (megaRowContentsSpanAmount == 1){
+												
+												$(megaRowContents).addClass('span-12');
+												
+											} else {
+												
+												$(megaRowContents).addClass('span-'+Math.floor(megaRowContentsSpanAmount));
+												
+											}
+											
+										
+											
+											
+										});
+										
+										
+				
+								
+								} // end check if ignored class
+								
+								
+							});
+							
+							
+							$(topLevelLIdropdown).each(function(){
+								// Reset the first level li.nav-dropdowns so we can megafy the dropdown too.
+								
+								// if not set to ignore
+								if (!$(this).children('ul').hasClass(o.ignoreMegaClass)){
+								
+									$(this).css({
+										'position':'static'
+									});
+								
+								}
+								
+								// A custom function for animating speed
+								$.fn.megaSubAnimate = function() {
+									
+									var animSub = $(this);
+									
+									// set transition speed
+									$(animSub).css({
+										'transition':'all '+o.speed+'ms ease-in-out',
+										'-moz-transition':'all '+o.speed+'ms ease-in-out',
+										'-webkit-transition':'all '+o.speed+'ms ease-in-out',
+										'-o-transition':'all '+o.speed+'ms ease-in-out',
+									});
+
+								};
+																
+								// activating the dropdown on hover
+								$(this).hover(function(){
+									$(this).find(megaLevel).toggleClass('megafy-level-1-active').megaSubAnimate();
+									
+									// squareup the (first) thumbnail responsively...
+									$(window).on('resize', function () {
+										$(megaMenuFirstLevelThumb).each(function() {
+																						
+											$(this).css({
+												'height':$(this).width()+'px'
+											});
+										});
+									}).resize();
+									
+								});
+								
+							});
+							
+
+							// Recycled from the dropdown plugin... let's see
+							var parentUL = $(this).find('ul.mega-menu-level-top');
+							var firstSub = $(parentUL).find('ul.mega-menu-level-1');
+							var subs = $(firstSub).find('ul');
+							var subLI = $(firstSub).find('li.nav-dropdown');
+														
+							// Adds the caret to top level nav items.
+							if (o.topLevelCaret == true) {
+								
+								var parentLI = $(parentUL).children('li.nav-dropdown');
+								
+								$(parentLI).each(function(){
+															
+									$(this).children('.mega-menu-link').append('<span style="text-align: center; font-size: 14px; line-height: 16px;" class="mega-menu-top-level-caret"><i class="fa '+o.topLevelCaretIconInactive+'"></i></span>');
+									$(this).hover(function(){
+										$(this).find('.mega-menu-top-level-caret').find('i.fa').toggleClass(o.topLevelCaretIconInactive).toggleClass(o.topLevelCaretIconActive);
+									})
+								});
+							
+							} // end caret
+							
+							// Function Creates UI Elements
+							function createUIelements() {
+								// Create UI Elements
+								$(subLI).each(function(){
+									
+									var subLink = $(this).children('.mega-menu-link');
+									
+									$(subLink).css({
+										'borderBottom':'none'
+									})
+									
+									$(subLink).wrap('<span class="mega-menu-link-wrap" />');
+									
+									var subLinkWrap = $(this).children('.mega-menu-link-wrap');
+									
+									$(subLinkWrap).append('<a href="#a" class="mega-menu-sub-trigger"><i class="fa '+o.caretIconInactive+'"></i></a>');
+									
+									var subLinkCollapseTrigger = $(subLinkWrap).children('.mega-menu-sub-trigger');
+									
+									$(subLinkCollapseTrigger).css({
+										'height':subLinkWrap+'px',
+										'textAlign':'center',
+										'borderBottom':'none'
+									})
+									
+									$(subLinkWrap).css({
+										'paddingRight':'32px',
+										'position':'relative',
+										'display':'block',
+										'borderBottom':'1px solid #ccc'
+									})
+									
+								});
+							}
+							
+							// Collapse Format
+							if (o.format == 'collapse') {
+																
+								createUIelements();
+								
+								// Collapse & Style All Subs
+								function collapseAllSubs() {
+								
+									$(subs).css({
+										'display':'none'
+									}).removeClass('transition-fast');
+								
+								}
+								collapseAllSubs();
+								
+								// Trigger Logic for expanding open subs
+								var subTrig = $(parentUL).find('a.mega-menu-sub-trigger');
+								
+								$(subTrig).click(function(evt){
+									
+									evt.preventDefault();
+									
+									var subActvTrigger = $(this);
+									var subTarget = $(subActvTrigger).parent().parent().children('ul');
+																		
+									$(subTarget).slideToggle(o.speed, function(){
+									
+										$(subActvTrigger).toggleClass('nav-selected');
+										
+										if ($(this).is(':visible')) {
+											$(subActvTrigger).find('i.fa').removeClass(o.caretIconInactive).addClass(o.caretIconActive);
+										} else {
+											$(subActvTrigger).find('i.fa').addClass(o.caretIconInactive).removeClass(o.caretIconActive);
+										}
+									});
+								
+								});
+								
+								// Collapse / Resets All Subs When Mouse Leaves Menu
+								$(firstSub).mouseleave(function(){
+									collapseAllSubs();
+									$(subTrig).removeClass('nav-selected').find('i.fa').addClass(o.caretIconInactive).removeClass(o.caretIconActive);
+								});
+
+
+							} // end collapse theme format
+							
+							
+							
+							
+
+
+            });
+        }
+    });
+})(jQuery);

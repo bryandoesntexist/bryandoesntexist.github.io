@@ -1,0 +1,30 @@
+$(document).ready(function() {
+	
+	var rcfExpandTrigger = $('a.rcf-l-expand-trigger');
+	
+		$(rcfExpandTrigger).click(function(){
+		
+		var activeOne = $(this).parent().parent().find('.rcf-l-contents');
+		var activeTrig = $(this).find('i.fa');
+			
+			$('.rcf-l-contents').not(activeOne).slideUp();
+			$('.rcf-l-expand-trigger i.fa').not(activeTrig).addClass('fa-plus-square').removeClass('fa-minus-square');
+		
+			$(activeOne).slideToggle(function(){
+				
+				if($(activeOne).is(':visible')){
+				
+					$(activeTrig).removeClass('fa-plus-square').addClass('fa-minus-square');
+				
+				} else {
+				
+					$(activeTrig).addClass('fa-plus-square').removeClass('fa-minus-square');
+					
+				}
+			
+			});
+		
+		});
+		
+		
+});
